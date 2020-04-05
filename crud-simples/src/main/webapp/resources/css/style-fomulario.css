@@ -1,0 +1,26 @@
+@charset "ISO-8859-1";
+
+body .ui-state-disabled {
+    opacity: 1.5;
+}
+
+.formulario .input-nome {
+	width: 640px;
+}
+
+.formulario .input-cpf, .formulario .input-data-nascimento {
+	width: 200px;
+}
+
+.formulario .input-logradouro, .formulario .input-complemento {
+	width: 200px;
+}
+
+.formulario .input-numero {
+	width: 208px;
+}
+
+.formulario .input-estado, .formulario .input-cidade {
+	width: 310px;
+}
+

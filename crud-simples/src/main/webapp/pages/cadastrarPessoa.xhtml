@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+    
+    <ui:composition template="/templates/template-principal.xhtml">
+    
+    	<ui:param name='textoTituloPagina' value="Cadastrar Pessoa" />
+    	
+        <ui:define name="insertConteudo">
+			
+			<p:panel id="panelCadastrarPessoa" header="Cadastrar Pessoa"  >
+				
+				<p:growl id="growl" showDetail="true" escape="false" showSummary="false" />
+				
+				<h:panelGrid id="gridCadastrarPessoa" styleClass="formulario" columns="1" >
+			 	
+					<h:panelGrid columns="1" cellspacing="10" >
+						<p:outputLabel id="labelNome" for="inputNome" value="Nome" />
+						<p:inputText id="inputNome" placeholder="Nome completo" styleClass="input-nome" required="true" value="#{cadastrar.pessoa.nome}" />
+					</h:panelGrid>
+					
+					<h:panelGrid columns="3" cellspacing="10" >
+						
+						<p:outputLabel id="labelCpf" for="inputCpf" value="CPF" />
+						<p:outputLabel id="labelDataNascimento" for="inputDataNascimento" value="Data de Nascimento" />
+						<p:outputLabel id="labelSexo" for="inputSexo" value="Sexo" />
+
+						<p:inputMask id="inputCpf" mask="999.999.999-99" placeholder="000.000.000-00" styleClass="input-cpf" required="true" value="#{cadastrar.pessoa.cpf}" />
+		        		
+		        		<p:calendar id="inputDataNascimento" navigator="true" pattern="dd/MM/yyyy" locale="pt_BR" showOn="both" mask="99/99/9999" placeholder="__/__/____ " styleClass="input-data-nascimento" required="true" value="#{cadastrar.pessoa.dataNascimento}" />
+						
+				        <p:selectOneRadio id="inputSexo" value="#{cadastrar.pessoa.sexo}" unselectable="true" styleClass="input-sexo" required="true" >
+				            <f:selectItem itemLabel="Masculino" itemValue="MASCULINO" />
+				            <f:selectItem itemLabel="Feminino" itemValue="FEMININO" />
+				        </p:selectOneRadio>
+						
+					</h:panelGrid>
+					
+					<h:panelGrid columns="3" cellspacing="10">
+						
+						<p:outputLabel id="labelLogradoura" for="inputLogradoura" value="Logradoura" />
+						<p:outputLabel id="labelNumero" for="inputNumero" value="Número" />
+						<p:outputLabel id="labelComplemento" for="inputComplemento" value="Complemento" />
+							
+						<p:inputText id="inputLogradoura" placeholder="Logradoura" styleClass="input-logradouro" required="true" value="#{cadastrar.pessoa.endereco.logradouro}" />
+						<p:inputText id="inputNumero" placeholder="Nº" styleClass="input-numero" required="true" value="#{cadastrar.pessoa.endereco.numero}" />
+						<p:inputText id="inputComplemento" placeholder="Complemento" styleClass="input-complemento" value="#{cadastrar.pessoa.endereco.complemento}" />
+						
+					</h:panelGrid>
+					
+					<h:panelGrid columns="2" cellspacing="10" >
+						
+						<p:outputLabel id="labelEstado" for="inputEstado" value="Estado" />
+						<p:outputLabel id="labelCidade" for="inputCidade" value="Cidade" />
+							
+						<p:selectOneMenu id="inputEstado" value="#{cadastrar.pessoa.endereco.estado}" styleClass="input-estado" required="true" >
+							<f:selectItem itemLabel="Selecione um estado" itemValue="" noSelectionOption="true" />
+							<f:selectItem itemLabel="Bahia" itemValue="BA" />
+						</p:selectOneMenu>
+						
+						<p:selectOneMenu id="inputCidade" value="#{cadastrar.pessoa.endereco.cidade}" styleClass="input-cidade" required="true" >
+							<f:selectItem itemLabel="Selecione uma cidade" itemValue="" noSelectionOption="true" />
+							<f:selectItem itemLabel="Salvador" itemValue="SSA" />
+						</p:selectOneMenu>
+						
+					</h:panelGrid>
+				
+				</h:panelGrid>
+				
+				
+				<f:facet name="footer">
+					
+					<h:panelGrid columns="2" >
+						<p:commandButton id="btnCadastrar" title="Cadastrar" value="Cadastrar" icon="pi pi-check" action="#{cadastrar.salvarPessoa}" process="@this, gridCadastrarPessoa" update="gridCadastrarPessoa growl" />
+					</h:panelGrid>
+					
+				</f:facet>
+				
+			</p:panel>
+			
+        </ui:define>
+   
+    </ui:composition>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:devcomp="http://java.sun.com/jsf/composite/devcomp">
+
+<ui:param name='textoTituloPagina' value="#{textoTituloPagina}" />
+
+<f:view contentType="text/html">
+	<h:head>
+		<meta content='text/html; charset=UTF-8' http-equiv="Content-Type" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+		<title>CRUD - <h:outputText value="#{textoTituloPagina}" /></title>
+		<h:outputStylesheet library="css" name="style-template.css" />
+		<h:outputStylesheet library="css" name="style-fomulario.css" />
+		<h:outputStylesheet library="webjars" name="font-awesome/5.12.0/css/all.min-jsf.css" />
+		<h:outputStylesheet library="webjars" name="font-awesome/5.12.0/css/v4-shims.min-jsf.css" />
+		<h:outputScript library="js" name="locale-primefaces.js" />
+	</h:head>
+
+	<h:body styleClass="main-body" >
+
+		<div class="layout-wrapper" >
+			
+			<!-- INICIO TOPBAR -->
+			<div class="topbar">
+				<!-- INICIO LOGO -->
+				<div class="logo-wrapper">
+					<div class="titulo">
+						CRUD SIMPLES
+					</div>
+				</div>
+				<!-- FIM LOGO -->
+			</div>
+			<!-- FIM TOPBAR -->
+			
+			<!-- INICIO MENU -->
+			<div class="layout-menu-container">
+				<ul id="layout-menu" class="layout-menu">
+					<li>
+						<a href="#{request.contextPath}/pages/cadastrarPessoa.xhtml" title="Cadastrar" ><span>Cadastrar</span></a>
+					</li>
+					<li>
+						<a href="#{request.contextPath}/pages/visualizarPessoa.xhtml" title="Pesquisar" ><span>Pesquisar</span></a>
+					</li>
+				</ul>
+			</div>
+			<!-- FIM MENU -->
+			
+			<div class="layout-main">
+				
+				<!-- INICIO CONTEUDO PAGINA -->
+				<div class="layout-main-content">
+					<div class="conteudo-pagina">
+						
+						<h:form id="formConteudoPagina" >
+							
+							<p:ajaxStatus id="ajaxStatus" onstart="PF('statusDialog').show();" onsuccess="PF('statusDialog').hide();"/>
+							
+							<p:dialog id="dlgLoading" modal="true" widgetVar="statusDialog" header="Aguarde..." resizable="false" draggable="false" closable="false" styleClass="texto-alinhado-centro">
+								<h:graphicImage library="images" name="loading.gif" />
+							</p:dialog>
+							
+							<ui:insert name="insertConteudo" />
+						
+						</h:form>
+					
+					</div>
+				</div>
+				<!-- FIM CONTEUDO PAGINA -->
+				
+				<!-- INICIO FOOTER -->
+				<div class="footer">
+					<div class="footer-bar">
+						<span class="texto-footer">CRUD Simples</span>
+					</div>
+				</div>
+				<!-- FIM FOOTER -->
+				
+			</div>
+			
+		</div>
+
+	</h:body>
+</f:view>
+</html>
